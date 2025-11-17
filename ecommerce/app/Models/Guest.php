@@ -1,20 +1,37 @@
 <?php
 
 namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Guest extends Authenticatable
 {
-    // inisialisasi tabel produk
+    use Notifiable;
+
     protected $table = 'account_user';
-
-    // inisialisasi primary key di dalam tabel
     protected $primaryKey = 'id_user';
+    public $timestamps = true;
 
-    // inisialisasi data yang bisa di isi di dalam tabel
-    // protected $fillable = ['nama_product','harga','stok'];
+    protected $fillable = [
+        'nama',
+        'no_telp',
+        'email',
+        'password',
+        'provinsi',
+        'kota',
+        'daerah',
+        'kode_pos',
+    ];
 
-    // inisialisasi data yang tidak bisa di isi di dalam table
-    protected $guarded = ['id_user'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

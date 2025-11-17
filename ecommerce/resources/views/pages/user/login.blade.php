@@ -10,7 +10,7 @@
                 </p>
             </div>
             <div class="form-input mt-5">
-                <form action="{{route('login')}}" method="POST">
+                <form action="/login" method="POST">
                     @csrf
                     <div class="row">
                         <div class="col-sm-12">

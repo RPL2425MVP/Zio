@@ -1,5 +1,5 @@
 @php
-    $isLoginPage = request()->routeIs('home') || request()->routeIs('register');
+    $isLoginPage = request()->routeIs('login') || request()->routeIs('register');
 @endphp
 @if ($isLoginPage)
     {{-- Hanya tampilkan logo di tengah --}}

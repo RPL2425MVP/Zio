@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('account_user', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('nama',100);
-            $table->integer('no_telp');
+            $table->string('no_telp');
             $table->string('email',200);
             $table->string('password',100);
             $table->string('provinsi',100);
             $table->string('kota',100);
             $table->string('daerah',100);
-            $table->integer('kode_pos');
+            $table->string('kode_pos');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('guests');
+        Schema::dropIfExists('account_user');
     }
 };

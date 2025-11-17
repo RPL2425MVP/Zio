@@ -8,7 +8,11 @@
                 Get peak comfy-chic
                 with new winter essentials.
             </p>
-            <a>shop now</a>
+            <button>shop now</button>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
         </div>
     </div>
 @endsection
