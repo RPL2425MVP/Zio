@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DataProduk;
 use App\Models\Guest;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,7 +12,12 @@ use Illuminate\Support\Facades\Hash;
 class GuestController extends Controller
 {
     public function index(){
-        return view('pages.user.index');
+        
+       $produkList = DataProduk::with(['foto', 'kategori'])
+    ->where('stok', '>', 0)
+    ->get();
+    $produkChunked = $produkList->chunk(5);
+    return view('pages.user.index', compact('produkChunked'));
     }
 
     public function regist(){

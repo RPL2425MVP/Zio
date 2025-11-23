@@ -5,7 +5,7 @@
     {{-- Hanya tampilkan logo di tengah --}}
     <nav class="navbar navbar-light bg-light fixed-top" style="height: 75px;" id="mainNavbar">
         <div class="container-fluid">
-            <a class="navbar-brand mx-auto" href="#" style="position: static; transform: none;">FaZhion</a>
+            <a class="navbar-brand mx-auto" href="/index" style="position: static; transform: none;">FaZhion</a>
         </div>
     </nav>
 @else
@@ -14,8 +14,8 @@
     <!-- Menu Kiri -->
     <div class="collapse navbar-collapse ps-3" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/index">Men</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about">Women</a></li>
         <li class="nav-item"><a class="nav-link" href="/product">Product</a></li>
         <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
       </ul>
@@ -31,10 +31,14 @@
         <input type="search" placeholder="Search..." aria-label="Search" style="width:200px;">
         <i class='bx bx-search text-dark'></i>
       </div>
-
-      <a class="nav-link me-3 d-none d-lg-block text-dark" href="/cart"><i class='bx bx-cart'></i></a>
+      <a href="{{ route('keranjang.index') }}" class="position-relative text-dark">
+        <i class='bx bx-cart'></i>
+      </a>  
       <a class="nav-link d-none d-lg-block text-dark" href="/profile"><i class='bx bx-user'></i></a>
-
+      <form action="{{ route('logout') }}" method="POST">
+          @csrf
+        <button type="submit" class="btn">Logout</button>
+      </form>
       <!-- Toggler mobile -->
       <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -42,9 +46,4 @@
     </div>
   </div>
 </nav>
-<!-- Hanya untuk debug — hapus setelah selesai -->
-<div class="bg-danger text-white p-2">
-    Path: {{ request()->path() }}<br>
-    Full URL: {{ request()->url() }}
-</div>
 @endif
