@@ -72,7 +72,7 @@ return [
         'admins' => [
         'driver' => 'eloquent',
         'model' => App\Models\AccountAdmin::class, // sesuaikan dengan model kamu
-    ],
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
