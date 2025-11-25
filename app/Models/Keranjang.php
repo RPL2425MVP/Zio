@@ -25,11 +25,4 @@ class Keranjang extends Model
         return $this->belongsTo(DataProduk::class, 'id_produk', 'id_produk');
     }
 
-        public function foto()
-    {
-        return $this->hasMany(FotoProduk::class, 'id_produkfoto', 'id_produk');
-
-
-    }
-
 }

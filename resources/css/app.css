@@ -126,3 +126,18 @@ html {
 .card-kategori {
     gap: 15px;
 }
+.card-list{
+    transition: box-shadow 0.25s;
+    height: 70vh;
+}
+
+.card-list:hover{
+    box-shadow: 4px 5px 13px black;
+}
+
+.dashboard{
+    margin-top: 50px;
+    margin-left: 17rem; 
+    height:100%;
+    margin-bottom: 100px;
+}

@@ -1,7 +1,7 @@
 @extends('layouts.master') <!-- Sesuaikan dengan layout-mu -->
 
 @section('konten')
-<div class="container" style="margin-top:100px;">
+<div class="container" style="margin-top:100px; margin-bottom:50px;">
     <!-- Detail Produk Utama -->
     <div class="row mb-5">
         <!-- Gambar -->

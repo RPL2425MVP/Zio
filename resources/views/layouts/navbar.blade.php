@@ -1,5 +1,5 @@
 @php
-    $isLoginPage = request()->routeIs('login') || request()->routeIs('register');
+    $isLoginPage = request()->routeIs('login') || request()->routeIs('register') || request()->routeIs('adminMode') ;
 @endphp
 @if ($isLoginPage)
     {{-- Hanya tampilkan logo di tengah --}}
@@ -14,10 +14,8 @@
     <!-- Menu Kiri -->
     <div class="collapse navbar-collapse ps-3" id="navbarNav">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item"><a class="nav-link" href="/index">Men</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about">Women</a></li>
+        <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/product">Product</a></li>
-        <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
       </ul>
     </div>
 
@@ -28,13 +26,23 @@
     <div class="d-flex align-items-center ms-auto pe-3">
       <!-- Search bar dengan ikon di dalam -->
       <div class="search-wrapper me-3 d-none d-lg-block my-auto">
-        <input type="search" placeholder="Search..." aria-label="Search" style="width:200px;">
-        <i class='bx bx-search text-dark'></i>
+        <form action="{{ route('produkList.show') }}" method="GET" class="d-flex">
+            <input 
+                type="text" 
+                name="search" 
+                class="form-control me-2" 
+                placeholder="Cari produk..."
+                value="{{ request()->is('product') ? request('search') : '' }}"
+                aria-label="Search" style="width:200px;"
+            >
+            <button class="btn" type="submit" style="position:relative; margin-left:-30px;">
+              <i class='bx bx-search text-dark'></i>
+            </button>
+        </form>
       </div>
       <a href="{{ route('keranjang.index') }}" class="position-relative text-dark">
         <i class='bx bx-cart'></i>
       </a>  
-      <a class="nav-link d-none d-lg-block text-dark" href="/profile"><i class='bx bx-user'></i></a>
       <form action="{{ route('logout') }}" method="POST">
           @csrf
         <button type="submit" class="btn">Logout</button>
