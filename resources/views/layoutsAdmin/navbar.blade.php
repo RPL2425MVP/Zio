@@ -18,17 +18,17 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="#">
+                <a class="nav-link text-dark" href="{{ route('admin.keranjang')}}">
                     <i class="fas fa-shopping-cart me-2"></i> Pesanan
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="#">
+                <a class="nav-link text-dark" href="{{ route('admin.account_user')}}">
                     <i class="fas fa-users me-2"></i> Pelanggan
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="#">
+                <a class="nav-link text-dark" href="">
                     <i class="fas fa-cog me-2"></i> Pengaturan
                 </a>
             </li>

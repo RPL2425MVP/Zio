@@ -55,4 +55,12 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     route::get('/tbProduk',[AdminController::class, 'tbProduk'])->name('tbProduk.show');
     route::get('/tbProduk/{id}/edit',[AdminController::class, 'editProduk'])->name('tbProduk.edit');
     route::put('/tbProduk/{id}',[AdminController::class, 'updateProduk'])->name('tbProduk.update');
+    Route::get('/tbProduk/create', [AdminController::class, 'createProduk'])->name('tbProduk.create');
+    Route::post('/tbProduk', [AdminController::class, 'storeProduk'])->name('tbProduk.store');
+
+        Route::get('/account-user', [AdminController::class, 'indexUsers'])->name('admin.account_user');
+    Route::delete('/account-user/{id_user}', [AdminController::class, 'destroyUser'])->name('admin.account_user.destroy');
+
+    Route::get('/keranjang', [AdminController::class, 'indexKeranjang'])->name('admin.keranjang');
+    Route::delete('/keranjang/{id_keranjang}', [AdminController::class, 'destroyKeranjang'])->name('admin.keranjang.destroy');
 });

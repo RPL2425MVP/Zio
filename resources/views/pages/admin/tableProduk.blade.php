@@ -2,6 +2,9 @@
 
 @section('konten')
 <div class="container-fluid dashboard" style="width: 85rem;">
+    <div class="mb-3">
+        <a href="{{ route('tbProduk.create') }}" class="btn btn-success">Tambah Produk</a>
+    </div>
     <table class="table table-dark table-hover">
         <thead>
             <tr>
