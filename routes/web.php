@@ -6,6 +6,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CheckoutController;
 // User
 //Login
 Route::get('/', [GuestController::class, 'showLoginForm'])->name('login');
@@ -64,3 +65,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/keranjang', [AdminController::class, 'indexKeranjang'])->name('admin.keranjang');
     Route::delete('/keranjang/{id_keranjang}', [AdminController::class, 'destroyKeranjang'])->name('admin.keranjang.destroy');
 });
+
+
+
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
+Route::post('/checkout/proses', [CheckoutController::class, 'proses'])->name('checkout.proses');

@@ -80,7 +80,7 @@
             <h4>Total: <strong>Rp{{ number_format($total, 0, ',', '.') }}</strong></h4>
             <div>
                 <a href="{{ url('/index') }}" class="btn btn-secondary">Lanjut Belanja</a>
-                <button class="btn btn-primary">Lanjut ke Checkout</button>
+                <a href="{{ route('checkout.show') }}" class="btn btn-primary">Lanjut ke Checkout</a>
             </div>
         </div>
     @endif
