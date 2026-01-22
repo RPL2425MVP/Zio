@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('konten')
-<div class="container" style="margin-top: 100px;">
+<div class="container" style="margin-top: 100px; height:100vh;">
     <h2>Konfirmasi Checkout</h2>
 
     @if(session('error'))
@@ -16,6 +16,7 @@
         <form action="{{ route('checkout.proses') }}" method="POST">
             @csrf
             <a href="{{ url('/keranjang') }}" class="btn btn-secondary">Kembali</a>
+
             <button type="submit" class="btn btn-success">Konfirmasi & Bayar</button>
         </form>
     </div>

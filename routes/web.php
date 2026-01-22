@@ -58,6 +58,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     route::put('/tbProduk/{id}',[AdminController::class, 'updateProduk'])->name('tbProduk.update');
     Route::get('/tbProduk/create', [AdminController::class, 'createProduk'])->name('tbProduk.create');
     Route::post('/tbProduk', [AdminController::class, 'storeProduk'])->name('tbProduk.store');
+    Route::delete('/tbProduk/{id_produk}', [AdminController::class, 'destroyProduk'])->name('tbProduk.destroy');
 
         Route::get('/account-user', [AdminController::class, 'indexUsers'])->name('admin.account_user');
     Route::delete('/account-user/{id_user}', [AdminController::class, 'destroyUser'])->name('admin.account_user.destroy');
@@ -70,3 +71,4 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
 Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
 Route::post('/checkout/proses', [CheckoutController::class, 'proses'])->name('checkout.proses');
+Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');

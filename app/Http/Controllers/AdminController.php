@@ -150,4 +150,24 @@ $request->validate([
         Keranjang::where('id_keranjang', $id_keranjang)->delete();
         return redirect()->back()->with('success', 'Item keranjang dihapus.');
     }
+
+    // Hapus produk beserta fotonya
+    public function destroyProduk($id_produk)
+    {
+        $produk = DataProduk::with('foto')->findOrFail($id_produk);
+
+        // Hapus file foto dari storage jika ada
+        if ($produk->foto) {
+            $filePath = public_path($produk->foto->foto);
+            if (File::exists($filePath)) {
+                File::delete($filePath);
+            }
+            $produk->foto->delete(); // Hapus entri di tabel foto_produk
+        }
+
+        // Hapus produk
+        $produk->delete();
+
+        return redirect()->route('tbProduk.show')->with('success', 'Produk berhasil dihapus.');
+    }
 }

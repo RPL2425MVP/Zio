@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Keranjang;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,10 +50,14 @@ class CheckoutController extends Controller
 
             DB::commit();
 
-            return redirect('/index')->with('success', 'Checkout berhasil! Silakan cek riwayat pembelian Anda.');
+            return view('pages.produk.invoice', compact('items'));
         } catch (\Exception $e) {
             DB::rollback();
             return back()->with('error', 'Gagal melakukan checkout. Silakan coba lagi.');
         }
+    }
+
+    public function invoice($id){
+        return view('pages.produk.invoice');
     }
 }
