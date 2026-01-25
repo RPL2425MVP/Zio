@@ -19,7 +19,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-dark" href="{{ route('admin.keranjang')}}">
-                    <i class="fas fa-shopping-cart me-2"></i> Pesanan
+                    <i class="fas fa-shopping-cart me-2"></i> Keranjang
                 </a>
             </li>
             <li class="nav-item">
@@ -28,8 +28,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" href="">
-                    <i class="fas fa-cog me-2"></i> Pengaturan
+                <a class="nav-link text-dark" href="{{route('admin.pesanan')}}">
+                    <i class="fas fa-cog me-2"></i> Pesanan
                 </a>
             </li>
             <li class="nav-item mt-4">

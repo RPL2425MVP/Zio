@@ -74,7 +74,7 @@ return new class extends Migration
 
         // transaksi (tanpa detail_transaksi)
         Schema::create('transaksi', function (Blueprint $table) {
-            $table->id('id_transaksi');
+            $table->string('id_transaksi');
             $table->unsignedBigInteger('id_user');
             $table->timestamp('tanggal_transaksi')->useCurrent();
             $table->integer('total_harga');

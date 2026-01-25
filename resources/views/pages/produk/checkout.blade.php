@@ -12,7 +12,6 @@
         <h5>Total yang Harus Dibayar:</h5>
         <h2 class="text-success">Rp{{ number_format($total, 0, ',', '.') }}</h2>
         <p class="text-muted">Pastikan data Anda sudah benar.</p>
-
         <form action="{{ route('checkout.proses') }}" method="POST">
             @csrf
             <a href="{{ url('/keranjang') }}" class="btn btn-secondary">Kembali</a>

@@ -15,7 +15,8 @@ class GuestController extends Controller
         
        $produkList = DataProduk::with(['foto', 'kategori'])
     ->where('stok', '>', 0)
-    ->get();
+    ->get()
+    ->limit(10);
     $produkChunked = $produkList->chunk(5);
     return view('pages.user.index', compact('produkChunked'));
     }

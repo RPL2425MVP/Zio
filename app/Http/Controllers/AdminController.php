@@ -8,6 +8,7 @@ use App\Models\FotoProduk;
 use App\Models\Guest;
 use App\Models\Kategori;
 use App\Models\Keranjang;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -169,5 +170,36 @@ $request->validate([
         $produk->delete();
 
         return redirect()->route('tbProduk.show')->with('success', 'Produk berhasil dihapus.');
+    }
+    public function indexPesanan(){
+        $pesanan=Transaksi::with('user')->get();
+        return view('pages.admin.TablePesanan', compact('pesanan'));
+    }
+    public function detailPesanan($id){
+        $pesanan = Transaksi::with(['detail.produk', 'user'])->where('id_transaksi', $id)->firstOrFail();
+       
+        return view('pages.admin.DetailPesanan', compact('pesanan'));
+    }
+    public function editStatus($id)
+    {
+        $transaksi = Transaksi::where('id_transaksi', $id)->firstOrFail();
+        
+        $statuses = ['pending', 'diproses', 'dikirim', 'selesai', 'dibatalkan'];
+
+        return view('pages.admin.edit-status', compact('transaksi', 'statuses'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:pending,diproses,dikirim,selesai,dibatalkan',
+        ]);
+
+        $transaksi = Transaksi::where('id_transaksi', $id)->firstOrFail();
+        $transaksi->status = $request->status;
+        $transaksi->save();
+
+        return redirect()->route('admin.pesanan.detail', $id)
+                         ->with('success', 'Status berhasil diperbarui!');
     }
 }

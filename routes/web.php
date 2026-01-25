@@ -65,10 +65,20 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     Route::get('/keranjang', [AdminController::class, 'indexKeranjang'])->name('admin.keranjang');
     Route::delete('/keranjang/{id_keranjang}', [AdminController::class, 'destroyKeranjang'])->name('admin.keranjang.destroy');
+
+    Route::get('/pesanan', [AdminController::class, 'indexPesanan'])->name('admin.pesanan');
+    Route::get('/pesanan/detail/{id}', [AdminController::class, 'detailPesanan'])->name('admin.pesanan.detail');
+
+    Route::get('/pesanan/{id}/edit-status', [AdminController::class, 'editStatus'])->name('admin.pesanan.edit-status');
+    Route::post('/pesanan/{id}/update-status', [AdminController::class, 'updateStatus'])->name('admin.pesanan.update-status');
 });
 
 
 
-Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
-Route::post('/checkout/proses', [CheckoutController::class, 'proses'])->name('checkout.proses');
-Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout.show');
+    Route::post('/checkout/proses', [CheckoutController::class, 'proses'])->name('checkout.proses');
+    Route::get('/checkout/invoice/{id}', [CheckoutController::class, 'invoice'])->name('checkout.invoice'); 
+    Route::get('/checkout/invoice/{id}/pdf', [CheckoutController::class, 'downloadPdf'])->name('checkout.download-pdf');
+});
