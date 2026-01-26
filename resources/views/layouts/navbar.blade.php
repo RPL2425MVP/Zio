@@ -40,9 +40,18 @@
             </button>
         </form>
       </div>
-      <a href="{{ route('keranjang.index') }}" class="position-relative text-dark">
-        <i class='bx bx-cart'></i>
-      </a>  
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a href="{{ route('keranjang.index') }}" class="nav-link text-dark">
+            <i class='bx bx-cart'></i>
+          </a>
+        </li>
+        <li class="nav-item">     
+          <a href="{{ route('user.profile') }}" class="nav-link text-dark">
+            <i class='bx bx-user'></i>
+          </a>
+        </li>
+      </ul>
       <form action="{{ route('logout') }}" method="POST">
           @csrf
         <button type="submit" class="btn">Logout</button>

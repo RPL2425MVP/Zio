@@ -32,6 +32,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/product',[ProdukController::class, 'produkList'])->name('produkList.show');
     // atur Jumlah Di Keranjang
     Route::post('/keranjang/ubah-qty', [KeranjangController::class, 'ubahQty'])->name('keranjang.ubah.qty');
+    
+    Route::get('/profile', [GuestController::class, 'indexProfile'])->name('user.profile');
+    Route::get('/profile/edit/{field}', [GuestController::class, 'editField'])->name('edit.nama');
+    Route::patch('/profile/update/{field}', [GuestController::class, 'updateField'])->name('update.field');
+    
+    Route::get('/profile/edit/p/alamat', [GuestController::class, 'editAlamat'])->name('profile.edit.lokasi');
+    Route::patch('/profile/update/p/alamat', [GuestController::class, 'updateAlamat'])->name('profile.update.alamat');
 });
 
 
@@ -71,6 +78,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
     Route::get('/pesanan/{id}/edit-status', [AdminController::class, 'editStatus'])->name('admin.pesanan.edit-status');
     Route::post('/pesanan/{id}/update-status', [AdminController::class, 'updateStatus'])->name('admin.pesanan.update-status');
+
 });
 
 

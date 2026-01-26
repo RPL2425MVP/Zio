@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('konten')
-<div class="container" style="margin-top: 100px; height:100vh;">
+<div class="container" style="margin-top: 100px;">
     <h2>Keranjang Belanja</h2>
 
     @if(session('success'))

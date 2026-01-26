@@ -12,8 +12,11 @@
     <title>Hello, world!</title>
     <style>
       body{
-        font-family: "Gill Sans", sans-serif;
         text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        font-family: sans-serif;
       }
       body a{
         text-decoration: none;
@@ -99,6 +102,7 @@
     </div>
 
     {{-- isi konten --}}
+
     @yield('konten')
 
 

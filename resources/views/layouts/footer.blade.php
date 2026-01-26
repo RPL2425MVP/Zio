@@ -1,14 +1,10 @@
 <style>
         .footer{
-            position: relative;
-            margin-bottom: 0%;
-            right: 0;
-            height: 50px;
-            width: 100%;
-            background-color: black;
+            background-color: #000000;
             color: white;
             text-align: center;
-            line-height: 50px;
+            padding: 1rem;
+            margin-top: auto;
         }
     </style>
 
