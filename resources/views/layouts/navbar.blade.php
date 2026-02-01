@@ -51,6 +51,11 @@
             <i class='bx bx-user'></i>
           </a>
         </li>
+        <li class="nav-item">     
+          <a href="{{ route('user.pesanan') }}" class="nav-link text-dark">
+            <i class="bx bx-list-ul-square" ></i>
+          </a>
+        </li>
       </ul>
       <form action="{{ route('logout') }}" method="POST">
           @csrf

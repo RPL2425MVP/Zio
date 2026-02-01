@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/profile/edit/p/alamat', [GuestController::class, 'editAlamat'])->name('profile.edit.lokasi');
     Route::patch('/profile/update/p/alamat', [GuestController::class, 'updateAlamat'])->name('profile.update.alamat');
+
+    route::get('/pesanan', [GuestController::class, 'showPesanan'])->name('user.pesanan');
 });
 
 

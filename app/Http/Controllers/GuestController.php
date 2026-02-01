@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DataProduk;
 use App\Models\Guest;
+use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -130,34 +131,43 @@ class GuestController extends Controller
         return redirect()->route('user.profile')
                          ->with('success', ucfirst($field) . ' berhasil diperbarui!');
     }
-   public function editAlamat()
-{
-    $user = Auth::user();
-    return view('pages.user.editalamat', compact('user'));
-}
+    public function editAlamat()
+    {
+        $user = Auth::user();
+        return view('pages.user.editalamat', compact('user'));
+    }
 
-public function updateAlamat(Request $request)
-{
-    // Ambil ID user yang login
-    $id_user = Auth::id();
+    public function updateAlamat(Request $request)
+    {
+        // Ambil ID user yang login
+        $id_user = Auth::id();
 
-    // Cari data dari model Guest (bukan dari session!)
-    $bio = Guest::findOrFail($id_user);
+        // Cari data dari model Guest (bukan dari session!)
+        $bio = Guest::findOrFail($id_user);
 
-    // Validasi
-    $request->validate([
-        'provinsi' => 'required|string|max:100',
-        'kota'     => 'required|string|max:100',
-        'daerah'   => 'required|string|max:150',
-    ]);
+        // Validasi
+        $request->validate([
+            'provinsi' => 'required|string|max:100',
+            'kota'     => 'required|string|max:100',
+            'daerah'   => 'required|string|max:150',
+        ]);
 
-    // Update
-    $bio->update([
-        'provinsi' => $request->provinsi,
-        'kota'     => $request->kota,
-        'daerah'   => $request->daerah,
-    ]);
+        // Update
+        $bio->update([
+            'provinsi' => $request->provinsi,
+            'kota'     => $request->kota,
+            'daerah'   => $request->daerah,
+        ]);
 
-    return redirect()->route('user.profile')->with('success', 'Alamat berhasil diperbarui!');
-}
+        return redirect()->route('user.profile')->with('success', 'Alamat berhasil diperbarui!');
+    }
+    
+    public function showPesanan(){
+        $id_user=Auth::user()->id_user;
+        $pesanan = Transaksi::where('id_user', $id_user)
+        ->with('detail.produk')
+        ->get();
+
+        return view('pages.user.pesanan', compact('pesanan','id_user'));
+    }
 }
