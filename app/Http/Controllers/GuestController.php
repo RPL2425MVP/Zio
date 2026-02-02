@@ -170,4 +170,9 @@ class GuestController extends Controller
 
         return view('pages.user.pesanan', compact('pesanan','id_user'));
     }
+    public function indexKategori(){
+        $kategori=Keranjang::get();
+        
+        return view('pages.admin.tableKategori', compact('kategori'));
+    }
 }

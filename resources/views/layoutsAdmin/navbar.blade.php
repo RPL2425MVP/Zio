@@ -32,6 +32,16 @@
                     <i class="fas fa-cog me-2"></i> Pesanan
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{{route('admin.kategori.show')}}">
+                    <i class="fas fa-cog me-2"></i> Kategori
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{{route('admin.jenis.show')}}">
+                    <i class="fas fa-cog me-2"></i> Jenis
+                </a>
+            </li>
             <li class="nav-item mt-4">
                 <form action="{{ route('admin.logout') }}" method="POST">
                     @csrf

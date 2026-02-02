@@ -15,8 +15,9 @@ return new class extends Migration
             $table->integer('jumlah');
             $table->integer('harga_satuan'); // simpan harga saat transaksi (karena harga bisa berubah nanti)
 
-            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi')->onDelete('cascade');
+            
             $table->foreign('id_produk')->references('id_produk')->on('data_produk')->onDelete('restrict');
+            $table->foreign('id_transaksi')->references('id_transaksi')->on('transaksi')->onDelete('cascade');
         });
     }
 

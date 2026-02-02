@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\File;
 use App\Models\DataProduk;
 use App\Models\FotoProduk;
+use App\Models\TransaksiDetail;
 use App\Models\Guest;
 use App\Models\Kategori;
 use App\Models\Keranjang;
@@ -201,5 +202,56 @@ $request->validate([
 
         return redirect()->route('admin.pesanan.detail', $id)
                          ->with('success', 'Status berhasil diperbarui!');
+    }
+    public function indexKategori(){
+        $kategori=Kategori::get();
+        
+        return view('pages.admin.tableKategori', compact('kategori'));
+    }
+    public function editKategori($id){
+        $data=Kategori::findOrFail($id);
+
+        return view('pages.admin.editKategori', compact('data'));
+    }
+    public function updateKategori(Request $request, $id){
+        $request->validate([
+            'nama_kategori'=>'required|string',
+        ]);
+        $kategori=Kategori::findOrFail($id);
+        $kategori->update([
+            'nama_kategori' => $request->nama_kategori,
+        ]);
+        return redirect()->route('admin.kategori.show');
+    }
+    public function destroyKategori($id){
+        // 1. Cari semua produk dengan kategori ini
+        $produks = DataProduk::where('id_kategori', $id)->get();
+        
+        // 2. Hapus semua transaksi_detail yang terkait dengan produk-produk tersebut
+        foreach ($produks as $produk) {
+            TransaksiDetail::where('id_produk', $produk->id_produk)->delete();
+        }
+        
+        // 3. Hapus semua produk
+        DataProduk::where('id_kategori', $id)->delete();
+        
+        // 4. Hapus kategori
+        Kategori::where('id_kategori', $id)->delete();
+
+        return redirect()->route('admin.kategori.show');
+    }
+    public function createKategori(){
+        return view('pages.admin.createKategori');
+    }
+    public function storeKategori(Request $request){
+        $request->validate([
+            'nama_kategori'=>'required|string|unique:Kategori,nama_kategori'
+        ]);
+
+        Kategori::create([
+            'nama_kategori'=>$request->nama_kategori,
+        ]);
+
+        return redirect()->route('admin.kategori.show');
     }
 }

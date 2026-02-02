@@ -81,6 +81,13 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/pesanan/{id}/edit-status', [AdminController::class, 'editStatus'])->name('admin.pesanan.edit-status');
     Route::post('/pesanan/{id}/update-status', [AdminController::class, 'updateStatus'])->name('admin.pesanan.update-status');
 
+    Route::get('/tbKategori', [AdminController::class, 'indexKategori'])->name('admin.kategori.show');
+    Route::get('/tbKategori/{id}/edit', [AdminController::class, 'editKategori'])->name('tbKategori.edit');
+    Route::put('/tbKategori/{id}', [AdminController::class, 'updateKategori'])->name('tbKategori.update');
+    Route::delete('/tbKategori/{id}', [AdminController::class, 'destroyKategori'])->name('tbKategori.destroy');
+    Route::get('/tbKategori/create', [AdminController::class, 'createKategori'])->name('tbKategori.create');
+    Route::post('/tbKategori', [AdminController::class, 'storeKategori'])->name('tbKategori.store');
+
 });
 
 

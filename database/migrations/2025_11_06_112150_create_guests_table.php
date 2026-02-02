@@ -8,6 +8,8 @@ return new class extends Migration
 {
     public function up(): void
     {
+
+
         // account_user (guest/user)
         Schema::create('account_user', function (Blueprint $table) {
             $table->id('id_user'); // BIGINT UNSIGNED AUTO_INCREMENT
@@ -35,6 +37,15 @@ return new class extends Migration
         Schema::create('kategori', function (Blueprint $table) {
             $table->id('id_kategori');
             $table->string('nama_kategori');
+        });
+
+        // jenis
+        Schema::create('jenis', function (Blueprint $table) {
+            $table->id('id_jenis');
+            $table->unsignedBigInteger('id_kategori');
+            $table->string('jenis');
+
+            $table->foreign('id_kategori')->references('id_kategori')->on('kategori')->onDelete('cascade');
         });
 
         // data_produk
@@ -82,7 +93,7 @@ return new class extends Migration
 
             $table->foreign('id_user')->references('id_user')->on('account_user')->onDelete('cascade');
         });
-
+    
         // ulasan
         Schema::create('ulasan', function (Blueprint $table) {
             $table->id('id_ulasan');
@@ -95,6 +106,8 @@ return new class extends Migration
             $table->foreign('id_user')->references('id_user')->on('account_user')->onDelete('cascade');
             $table->foreign('id_produk')->references('id_produk')->on('data_produk')->onDelete('cascade');
         });
+
+
     }
 
     public function down(): void
