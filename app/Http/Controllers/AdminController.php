@@ -10,6 +10,7 @@ use App\Models\Guest;
 use App\Models\Kategori;
 use App\Models\Keranjang;
 use App\Models\Transaksi;
+use App\Models\Jenis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -253,5 +254,58 @@ $request->validate([
         ]);
 
         return redirect()->route('admin.kategori.show');
+    }
+
+    public function indexJenis(){
+        $listjenis=Jenis::with('kategori')
+        ->get();
+        return view('pages.admin.tableJenis', compact('listjenis'));
+    }
+
+    public function createJenis(){
+        $listKategori=Kategori::get();
+        return view('pages.admin.createJenis', compact('listKategori'));
+    }
+
+    public function storeJenis(Request $request){
+        $request->validate([
+            'nama_jenis'=>'string|required',
+            'id_kategori'=>'required|exists:kategori,id_kategori',
+        ]);
+
+        Jenis::create([
+            'jenis'=>$request->nama_jenis,
+            'id_kategori'=>$request->id_kategori,
+        ]);
+        
+        return redirect()->route('admin.jenis.show');
+    }
+
+    public function editJenis($id){
+        $data=Jenis::with('kategori')->findOrFail($id);
+        $listKat=Kategori::all();
+        return view('pages.admin.editJenis', compact(['data','listKat']));
+    }
+
+    public function updateJenis(Request $request, $id){
+        $request->validate([
+            'nama_jenis'=>'string|required',
+            'id_kategori'=>'required|exists:kategori,id_kategori',
+        ]);
+
+        $data=Jenis::findOrFail($id);
+        $data->update([
+            'jenis'=>$request->nama_jenis,
+            'id_kategori'=>$request->id_kategori
+        ]);
+
+        return redirect()->route('admin.jenis.show');
+    }
+
+    public function destroyJenis($id){
+        $data=Jenis::findOrFail($id);
+        $data->delete();
+
+        return redirect()->route('admin.jenis.show');
     }
 }

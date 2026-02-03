@@ -88,6 +88,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/tbKategori/create', [AdminController::class, 'createKategori'])->name('tbKategori.create');
     Route::post('/tbKategori', [AdminController::class, 'storeKategori'])->name('tbKategori.store');
 
+    Route::get('/tbJenis', [AdminController::class, 'indexJenis'])->name('admin.jenis.show');
+    Route::get('/tbJenis/create', [AdminController::class, 'createJenis'])->name('tbJenis.create');
+    Route::post('/tbJenis', [AdminController::class, 'storeJenis'])->name('tbJenis.store');
+    Route::get('/tbJenis/{id}/edit', [AdminController::class, 'editJenis'])->name('tbJenis.edit');
+    Route::put('/tbJenis/{id}', [AdminController::class, 'updateJenis'])->name('tbJenis.update');
+    Route::delete('/tbJenis/{id}', [AdminController::class, 'destroyJenis'])->name('tbJenis.destroy');
+
+
+    Route::get('/produk/jenis/{id_kategori}', [AdminController::class, 'getJenisByKategori'])->name('produk.jenis');
 });
 
 
